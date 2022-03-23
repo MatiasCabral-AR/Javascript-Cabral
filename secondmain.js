@@ -1,4 +1,5 @@
 function control(num1, num2){
+    // Control que los datos ingresados sean numeros
     if(!isNaN(num1) && !isNaN(num2)){
         return true
     }
@@ -6,81 +7,66 @@ function control(num1, num2){
 }
 
 function printMenu(){
+    // Imprimir menu
     console.clear()
-    console.log(" Bienvenidos a la Calculadora de Mierda ! ");
-    console.log("1 - Suma");
-    console.log("2 - Resta");
-    console.log("3 - Multiplicacion");
-    console.log("4 - Division");
-    console.log("5 - Salir");
+    let option = parseInt(prompt("Bienvenidos a la Calculadora de Mierda !, por favor ingrese una de las siguientes opciones : \n1 - Suma\n2 - Resta\n3 - Multiplicacion\n4 - Division\n5 - Salir "))
+    return option
+}
+
+function insert(){
+    // Ingreso de valores a calcular, control y retorno de los mismos en forma de Array
+    while (true){
+        let num1 = parseFloat(prompt("Ingrese el primer numero a operar : "))
+        let num2 = parseFloat(prompt("Ingrese el segundo numero a operar : "))
+        if(control(num1, num2)){
+            return [num1, num2]
+        }
+        console.log("Uno o ambos numeros son incorrectos, intente otra vez ... ")
+        console.clear()
+    }
+}
+
+function operation(arrayNum, op){
+    // Funcion Operacion, recibe el array de numeros y la opcion elegida. Retorna resultado de operacion.
+    if(op === "sum"){
+        return arrayNum[0]+arrayNum[1]
+    }else if(op === "res"){
+        return arrayNum[0]-arrayNum[1]
+    }else if(op === "mult"){
+        return arrayNum[0]*arrayNum[1]
+    }else if(op === "div"){
+        return arrayNum[0]/arrayNum[1]
+    }
 }
 
 function main(){
-    inicio : do{
-        printMenu();
-        var option = parseInt(prompt("Ingrese una de las opciones indicadas en la Consola : "))
-        if (!isNaN(option) && 0 < option && option < 6){
-            
-            if(option == 1){
-                while(true){
-                    var num1 = parseFloat(prompt("Ingrese el primer numero a sumar : "))
-                    var num2 = parseFloat(prompt("Ingrese el segundo numero a sumar : "))
-                    if(control(num1, num2)){
-                        alert("El resultado de la suma de los numeros es : "+ (num1+num2) +".\nHaz click en OK para volver al menu.")
+inicio :do{
+        let option = parseInt(printMenu());
+        if(!isNaN(option) && 0 < option && option < 6){
+            let arrayNum = insert()
+            let result = operation(arrayNum, option)
+            switch(option){
+                case 1 :console.log(`El resultado de la suma entre '${arrayNum[0]} y ${arrayNum[1]} es : ${result}.`);
+                        alert("Presiona el boton para volver al menu.")
                         continue inicio
-                    }
-                    alert("Uno o ambos numeros son incorrectos, intente otra vez ... ")
-                    console.clear()
-                }
-            }
-            else if(option == 2){
-                while(true){
-                    var num1 = parseFloat(prompt("Ingrese el primer numero a restar : "))
-                    var num2 = parseFloat(prompt("Ingrese el segundo numero a restar : "))
-                    if(control(num1, num2)){
-                        alert("El resultado de la resta de los numeros es : "+ (num1-num2) +".\nHaz click en OK para volver al menu.")
+                case 2 :console.log(`El resultado de la resta entre '${arrayNum[0]} y ${arrayNum[1]} es : ${result}.`);
+                        alert("Presiona el boton para volver al menu.")
                         continue inicio
-                    }
-                    alert("Uno o ambos numeros son incorrectos, intente otra vez ... ")
-                    console.clear()
-                }
-            }
-            else if(option == 3){
-                while(true){
-                    var num1 = parseFloat(prompt("Ingrese el primer numero a multiplicar : "))
-                    var num2 = parseFloat(prompt("Ingrese el segundo numero a multiplicar : "))
-                    if(control(num1, num2)){
-                        alert("El resultado de la multiplicacion de los numeros es : "+ (num1*num2) +".\nHaz click en OK para volver al menu.")
+                case 3 :console.log(`El resultado de la multiplicacion entre '${arrayNum[0]} y ${arrayNum[1]} es : ${result}.`);
+                        alert("Presiona el boton para volver al menu.")
                         continue inicio
-                    }
-                    alert("Uno o ambos numeros son incorrectos, intente otra vez ... ")
-                    console.clear()
-                }
-            }
-            else if(option == 4){
-                while(true){
-                    alert("Recuerde que el Divisor no puede ser 0 ... ")
-                    var num1 = parseFloat(prompt("Ingrese el Dividendo : "))
-                    var num2 = parseFloat(prompt("Ingrese el Divisor : "))
-                    if((num2 > 0) && control(num1, num2)){
-                        alert("El cociente de la Division de "+ num1 +" sobre "+ num2 +" es igual a : "+ (num1/num2) +".\nHaz click en OK para volver al menu.")
+                case 4 :if(isFinite(result)){
+                            console.log(`El resultado de la division entre '${arrayNum[0]} y ${arrayNum[1]} es : ${result}.`)
+                        }
+                        alert("ERROR : No se puede dividir por cero. \nHaz click en el boton para volver al menu.")
                         continue inicio
-                    }
-                    alert("Uno o ambos numeros son incorrectos, intente otra vez ... ")
-                    console.clear()
-                }
-            }
-            else{
-                alert("Saliendo de Calculadora ...")
-                return
             }
         }
-        alert("Has elegido una opcion incorrecta, por favor intenta otra vez.")
-        
+        alert("Has elegido una opcion incorrecta, por favor intenta otra vez.")   
     }while(option != 5);
 }
 
-main()
 console.clear()
+main()
 console.log("Calculadora Apagada, Recargue la pagina o presione F5 para comenzar.")
 
