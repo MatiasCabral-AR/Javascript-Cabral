@@ -53,28 +53,24 @@ function operation(arrayNum, option, op){
 
 function main(){
     // Funcion main
+        option = 0
         do{
-            //delete option
+            delete option
             let option = printMenu();
             if(!isNaN(option) && option > 0 && option < 5){
                 let op = ["suma", "resta", "multiplicacion", "division"]
                 let arrayNum = insert()
                 if(option == 1){
                     operation(arrayNum, option, op[0])
-                    continue
                 } else if(option == 2){
                     operation(arrayNum, option, op[1])
-                    continue
                 } else if(option == 3){
                     operation(arrayNum, option, op[2])
-                    continue
                 } else{
                     if(isFinite(arrayNum[0]/arrayNum[1])){
                         operation(arrayNum, option, op[3])
-                        continue
                         } else {
                             alert("IMBECIL no se puede dividir por cero ! . \nHaz click en el boton para volver al menu.")
-                            continue 
                         }
                 }
             } else if(option == 5){
