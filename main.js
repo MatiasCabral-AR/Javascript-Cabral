@@ -12,58 +12,66 @@ function printMenu(){
     let option = parseInt(prompt("Bienvenidos a la Calculadora de Mierda !, por favor ingrese una de las siguientes opciones : \n1 - Suma\n2 - Resta\n3 - Multiplicacion\n4 - Division\n5 - Salir "))
     return option
 }
-/* -- Funcion Invalidada por Tutor --
+
 function insert(){
     // Ingreso de valores a calcular, control y retorno de los mismos en forma de Array
     while (true){
         let num1 = parseFloat(prompt("Ingrese el primer numero a operar : "))
         let num2 = parseFloat(prompt("Ingrese el segundo numero a operar : "))
+        console.clear()
         if(control(num1, num2)){
             return [num1, num2]
         }
         console.log("Uno o ambos numeros son incorrectos, intente otra vez ... ")
-        console.clear()
-    }
-}*/
-
-/* -- Funcion Invalidada por Tutor --
-    function operation(arrayNum, op){
-    // Funcion Operacion, recibe el array de numeros y la opcion elegida. Retorna resultado de operacion.
-    if(op === 1){
-        return arrayNum[0]+arrayNum[1]
-    }else if(op === 2){
-        return arrayNum[0]-arrayNum[1]
-    }else if(op === 3){
-        return arrayNum[0]*arrayNum[1]
-    }else if(op === 4){
-        return arrayNum[0]/arrayNum[1]
     }
 }
-*/
+
+function print(arrayNum, res, op){
+    // Imprime el resultado de la operacion y envia alerta para volver al menu
+    console.log(`El resultado de la ${op} entre ${arrayNum[0]} y ${arrayNum[1]} es : ${res}`)
+    alert("Presiona el boton para volver al menu.")
+}
+
+
+function operation(arrayNum, option, op){
+    // Funcion Operacion, recibe el array de numeros y la opcion elegida. Retorna resultado de operacion.
+    if(option === 1){
+        print(arrayNum, arrayNum[0]+arrayNum[1], op)
+        return 
+    }else if(option === 2){
+        print(arrayNum, arrayNum[0]-arrayNum[1], op)
+        return 
+    }else if(option === 3){
+        print(arrayNum, arrayNum[0]*arrayNum[1], op)
+        return
+    }else if(option === 4){
+        print(arrayNum, arrayNum[0]/arrayNum[1], op)
+        return
+    }return undefined
+}
+
 
 function main(){
     // Funcion main
         do{
-            var option = parseInt(printMenu());
+            //delete option
+            let option = printMenu();
             if(!isNaN(option) && option > 0 && option < 5){
-                let num1 = parseFloat(prompt("Ingrese el primer numero a operar : "))
-                let num2 = parseFloat(prompt("Ingrese el segundo numero a operar : "))
+                let op = ["suma", "resta", "multiplicacion", "division"]
+                let arrayNum = insert()
                 if(option == 1){
-                    console.log(`El resultado de la suma entre ${num1} y ${num2} es : ${num1+num2}.`);
-                    alert("Presiona el boton para volver al menu.")
+                    operation(arrayNum, option, op[0])
                     continue
                 } else if(option == 2){
-                    console.log(`El resultado de la resta entre ${num1} y ${num2} es : ${num1-num2}.`);
-                    alert("Presiona el boton para volver al menu.")
+                    operation(arrayNum, option, op[1])
                     continue
                 } else if(option == 3){
-                    console.log(`El resultado de la multiplicacion entre ${num1} y ${num2} es : ${num1*num2}.`);
-                    alert("Presiona el boton para volver al menu.")
+                    operation(arrayNum, option, op[2])
                     continue
                 } else{
-                    if(isFinite(num1/num2)){
-                            console.log(`El resultado de la division entre ${num1} y ${num2} es : ${num1/num2}.`)
-                            continue
+                    if(isFinite(arrayNum[0]/arrayNum[1])){
+                        operation(arrayNum, option, op[3])
+                        continue
                         } else {
                             alert("IMBECIL no se puede dividir por cero ! . \nHaz click en el boton para volver al menu.")
                             continue 
@@ -75,7 +83,7 @@ function main(){
             } else{
                 alert("IMBECIL !. No seleccionaste una de las opciones del menu, intenta de nuevo.")
             }
-        }while(option != 5);
+        }while(option !== 5);
 }
 
 // Programa
