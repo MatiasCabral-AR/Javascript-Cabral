@@ -1,3 +1,4 @@
+// Declaracion del constructor de Objetos
 function Product(name, size, colors, category, price, discount){
     this.name = name;
     this.size = size;
@@ -8,6 +9,7 @@ function Product(name, size, colors, category, price, discount){
     this.salePrice = (sale) => {this.price - (this.price * this.sale / 100)}
 }
 
+// Creacion del Objeto si y solo si, todos los valores internos son validos (retorna False en caso de no cumplirse dicha condicion)
 function createProduct(name, size, colors, category, price, discount){
     if(name && size && colors && category && price && discount){
         return new Product(name, size, colors, category, price, discount);
@@ -15,6 +17,7 @@ function createProduct(name, size, colors, category, price, discount){
     return false
 }
 
+//Creacion de un array de String con colores (retorna False si no se valido anteriormente el parametro de entrada)
 function createColors(num){
     if(num != false){
         let colors = [];
@@ -33,6 +36,7 @@ function createColors(num){
     return false
 }
 
+//Funcion control del numero de opciones
 function optionControl(num){
     if(intControl(num) && num < 7){
         return num
@@ -40,6 +44,7 @@ function optionControl(num){
     return false
 }
 
+//Funcion control de Strings
 function stringControl(str){
     if (typeof str === "string"){
         return str
@@ -47,6 +52,7 @@ function stringControl(str){
     return false
 }
 
+//Funcion control de Numeros
 function intControl(num){
         if(!isNaN(num) && num > 0){
             return num
@@ -55,7 +61,7 @@ function intControl(num){
         return false
 }
 
-// Problema !!
+// Problema !! (Intento de Funcion recursiva generica para todas las funciones de control)
 function repeat(value, fun){
     if(value === false){
         console.log("Intenta otra vez ...")
@@ -66,6 +72,7 @@ function repeat(value, fun){
     }
 }
 
+//Funcion Imprimir menu
 function printMenu(){
     console.log("Bienvenido ! Selecciona una de las siguientes opciones para continuar.");
     console.log("1 - Cargar uno o mas productos")
@@ -76,6 +83,7 @@ function printMenu(){
     console.log("6 - Salir")
 }
 
+//Funcion main
 function main(){
     printMenu()
     let option = 0
@@ -95,4 +103,5 @@ function main(){
 
 }
 
+//Programa
 main()
