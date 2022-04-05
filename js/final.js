@@ -75,6 +75,7 @@ function showProduct(object){
 
 //Funcion cargar producto/s
 function addProducts(products, numProducts){
+    numProducts = numProducts + products.length
     let categories = ["corpiño", "tanga", "colaless", "bikini", "lenceria", "accesorio"]
     while(numProducts != false && numProducts > products.length){
         let id = repeat(intControl(parseInt(prompt("Ingrese el ID del producto"))))
@@ -154,7 +155,7 @@ function main(){
             showProducts(products)
             let length = products.length
             let id = repeat(intControl(parseInt(prompt("Ingrese el ID de el/los producto/s a eliminar : "))))
-            products = filterProduct(id, products)
+            products = deleteProduct(id, products)
             if(length === products.length){
                 alert("No se han encontrado Productos que coincidan con el ID mencionado. Volviendo al menu ...")
             }else{
@@ -168,6 +169,7 @@ function main(){
             let name = stringControl(prompt("Ingrese el nombre de el/los producto/s a buscar : "))
             let search = searchProduct(name, products)
             if(search.length > 0){
+                console.clear()
                 console.log("Los productos que coinciden con el Nombre son los siguientes : ")
                 showProducts(search)
                 alert("Presione el Boton para volver al menu.")
