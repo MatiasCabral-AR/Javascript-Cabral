@@ -130,10 +130,10 @@ function repeat(fun){
 function printMenu(){
     console.log("Bienvenido ! Selecciona una de las siguientes opciones para continuar.");
     console.log("1 - Cargar uno o mas productos")
-    console.log("2 - Borrar uno o mas productos por ID")
-    console.log("3 - Mostrar todos los productos")
-    console.log("4 - Buscar productos por Nombre.")
-    console.log("5 - Filtrar productos por categoria.")
+    console.log("2 - Mostrar todos los productos")
+    console.log("3 - Ordenar los productos segun precio")
+    console.log("4 - Borrar uno o mas productos por ID")
+    console.log("5 - Buscar productos por Nombre.")
     console.log("6 - Salir")
 }
 
@@ -177,12 +177,14 @@ function main(){
                 alert("No se han encontrado productos que coincidan con el nombre. Volviendo al menu ...")
             }
         }else if(option === 5){
-
+            products.sort((a, b) => {return a.price - b.price})
         }else if(option === 6){
             alert("Saliendo de la aplicacion ...")
             break
+        }else{
+            console.log("El valor ingresado es incorrecto.");
         }
-        console.log("El valor ingresado es incorrecto.");
+        
     }
 
 }
