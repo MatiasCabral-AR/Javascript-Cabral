@@ -116,10 +116,11 @@ function searchProduct(val, products){
 function repeat(fun){
     let value = false
     while(value === false){
+        console.log("Prueba fun 1")
         value = fun
+        console.log("Prueba fun 2")
         if(value === false){
             console.log("El valor ingresado es incorrecto, intenta de nuevo por favor ...")
-            continue
         }else{
             return value
         }
@@ -151,6 +152,13 @@ function main(){
             products = addProducts(products, numProducts)
         }else if(option === 2){
             console.clear()
+            showProducts(products)
+            alert("Presione el Boton para volver al menu.")
+        }else if(option === 3){
+            products.sort((a, b) => {return a.price - b.price})
+            alert("Productos ordenados, utilize la opcion 2 para controlar.")
+        }else if(option === 4){
+            console.clear()
             console.log("Estos son los productos cargados hasta el momento : ")
             showProducts(products)
             let length = products.length
@@ -161,11 +169,7 @@ function main(){
             }else{
                 alert(`Se han borrado ${length-products.length} productos. Volviendo al menu ...`)
             }
-        }else if(option === 3){
-            console.clear()
-            showProducts(products)
-            alert("Presione el Boton para volver al menu.")
-        }else if(option === 4){
+        }else if(option === 5){
             let name = stringControl(prompt("Ingrese el nombre de el/los producto/s a buscar : "))
             let search = searchProduct(name, products)
             if(search.length > 0){
@@ -176,8 +180,6 @@ function main(){
             }else{
                 alert("No se han encontrado productos que coincidan con el nombre. Volviendo al menu ...")
             }
-        }else if(option === 5){
-            products.sort((a, b) => {return a.price - b.price})
         }else if(option === 6){
             alert("Saliendo de la aplicacion ...")
             break
